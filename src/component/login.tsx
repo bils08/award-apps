@@ -39,21 +39,21 @@ export default class Login extends Component<{}, {email:string, isUser:Boolean}>
         }
 
         // berikut untuk login dengan data hardcode
-        // if (payload.email.match(users)) {
-        //     window.location.href = '/home';
-        // } else {
-        //     alert("Email Address is not exists");
-        // }
+        if (payload.email.match(users)) {
+            window.location.href = '/home';
+        } else {
+            alert("Email Address is not exists");
+        }
         
         // berikut untuk login dengan data localhost backend server
         // login dengan input "someone@ymail.com"
-        axios.get("http://localhost:5000/user/" + payload.email )
-            .then(res => {
-                if(res.data.email !== null ) window.location.href = '/home';
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        // axios.get("http://localhost:5000/user/" + payload.email )
+        //     .then(res => {
+        //         if(res.data.email !== null ) window.location.href = '/home';
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
     }
     
     render() {

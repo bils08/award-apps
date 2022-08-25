@@ -1,83 +1,83 @@
 import axios from 'axios';
 import { Component } from 'react';
-import Row from 'react-bootstrap/Row';
+import { Row, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from './product';
 import Navbar from './navbar';
 
 // data dummy untuk tes cards
-// export const datas = [
-//     {
-//       _id: 1,
-//       name: "Gift Card IDR 1.000.000",
-//       type: "Vouchers",
-//       point: "500.000 Poin",
-//       color: "primary"
-//     },
-//     {
-//         _id: 2,
-//       name: "Gift Card IDR 500.000",
-//       type: "Products",
-//       point: "250.000 Poin",
-//       color: "success"
-//     },
-//     {
-//         _id: 3,
-//       name: "Old Fashion Cake",
-//       type: "Giftcards",
-//       point: "100.000 Poin",
-//       color: "danger"
-//     },
-//     {
-//         _id: 4,
-//        name: "Gift Card IDR 500.000",
-//        type: "Products",
-//        point: "250.000 Poin",
-//        color: "primary"
-//     },
-//     {
-//         _id: 5,
-//        name: "Old Fashion Cake",
-//        type: "Giftcards",
-//        point: "100.000 Poin",
-//        color: "success"
-//     },
-//     {
-//         _id: 6,
-//        name: "Gift Card IDR 500.000",
-//        type: "Products",
-//        point: "250.000 Poin",
-//        color: "danger"
-//     },
-//     {
-//         _id: 7,
-//        name: "Old Fashion Cake",
-//        type: "Giftcards",
-//        point: "100.000 Poin",
-//        color: "primary"
-//     },
-//     {
-//         _id: 8,
-//        name: "Gift Card IDR 500.000",
-//        type: "Products",
-//        point: "250.000 Poin",
-//        color: "success"
-//     },
-//     {
-//         _id: 9,
-//        name: "Old Fashion Cake",
-//        type: "Giftcards",
-//        point: "100.000 Poin",
-//        color: "danger"
-//     },
-//     {
-//         _id: 10,
-//        name: "Old Fashion Cake",
-//        type: "Giftcards",
-//        point: "100.000 Poin",
-//        color: "primary"
-//     }
-// ]
+export const datas = [
+    {
+      _id: 1,
+      name: "Gift Card IDR 1.000.000",
+      type: "Vouchers",
+      point: "500.000 Poin",
+      color: "primary"
+    },
+    {
+        _id: 2,
+      name: "Gift Card IDR 500.000",
+      type: "Products",
+      point: "250.000 Poin",
+      color: "success"
+    },
+    {
+        _id: 3,
+      name: "Old Fashion Cake",
+      type: "Giftcards",
+      point: "100.000 Poin",
+      color: "danger"
+    },
+    {
+        _id: 4,
+       name: "Gift Card IDR 500.000",
+       type: "Products",
+       point: "250.000 Poin",
+       color: "primary"
+    },
+    {
+        _id: 5,
+       name: "Old Fashion Cake",
+       type: "Giftcards",
+       point: "100.000 Poin",
+       color: "success"
+    },
+    {
+        _id: 6,
+       name: "Gift Card IDR 500.000",
+       type: "Products",
+       point: "250.000 Poin",
+       color: "danger"
+    },
+    {
+        _id: 7,
+       name: "Old Fashion Cake",
+       type: "Giftcards",
+       point: "100.000 Poin",
+       color: "primary"
+    },
+    {
+        _id: 8,
+       name: "Gift Card IDR 500.000",
+       type: "Products",
+       point: "250.000 Poin",
+       color: "success"
+    },
+    {
+        _id: 9,
+       name: "Old Fashion Cake",
+       type: "Giftcards",
+       point: "100.000 Poin",
+       color: "danger"
+    },
+    {
+        _id: 10,
+       name: "Old Fashion Cake",
+       type: "Giftcards",
+       point: "100.000 Poin",
+       color: "primary"
+    }
+]
 
 export default class Home extends Component<{}, {content:any}> {
     constructor(props:any) {
@@ -100,7 +100,23 @@ export default class Home extends Component<{}, {content:any}> {
     }
 
     render() {
-        const datas = this.state.content;
+        let active = 2;
+        let items = [];
+        for (let number = 1; number <= 5; number++) {
+        items.push(
+                <Pagination.Item key={number} active={number === active}>
+                {number}
+                </Pagination.Item>,
+            );
+        }
+
+        const Paging = (
+            <div style={{marginLeft:"70px"}}>
+              <Pagination>{items}</Pagination>
+            </div>
+          );
+
+        // const datas = this.state.content;
         return (
             <div className="container-fluid"> 
                 <Navbar />
@@ -112,6 +128,7 @@ export default class Home extends Component<{}, {content:any}> {
                              : <h1>No Awards Found</h1>
                         ))}  
                     </Row>
+                    {Paging}
                 </div>
             </div>
         );
